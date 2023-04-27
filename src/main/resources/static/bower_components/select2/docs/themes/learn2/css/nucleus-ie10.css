@@ -1,0 +1,8 @@
+button {
+	overflow: visible;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
