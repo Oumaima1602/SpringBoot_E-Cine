@@ -1,0 +1,54 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html  xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section layout:fragment="header">
+		<h1>Salle registration</h1>
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+			<li class="active">Registration salle</li>
+		</ol>
+	</section>
+	<div layout:fragment="content">
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">Form</h3>
+				<div class="box-tools pull-right">
+					<a href="/salle" type="button" class="btn btn-box-tool"><i
+						class="fa fa-list-ul"></i></a>
+				</div>
+			</div>
+			<form data-toggle="validator" role="form" th:object="${salle}"
+				th:action="@{/salle/save}" method="post">
+				<div class="box-body">
+					<input type="hidden" th:field="*{id}" />
+
+					<div class="form-group">
+						<label for="numero">numero</label> <input type="text"
+							required="true" class="form-control" th:field="*{numero}"
+							id="numero" />
+					</div>
+					<div class="form-group">
+						<label for="capacite">capacite</label> <input type="text"
+							required="true" class="form-control" th:field="*{capacite}"
+							id="capacite" />
+					</div>
+					<div class="form-group">
+						<label for="addedDate">addedDate</label> <input type="text"
+							required="true" class="form-control" th:field="*{addedDate}"
+							id="addedDate" />
+					</div>
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
