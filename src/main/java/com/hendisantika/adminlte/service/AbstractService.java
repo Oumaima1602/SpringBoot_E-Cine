@@ -9,10 +9,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractService<T extends AbstractModel<Long>, Long extends Serializable> {
-
+	
     private static final int PAGE_SIZE = 5;
     protected abstract JpaRepository<T, Long> getRepository();
 
@@ -21,6 +23,9 @@ public abstract class AbstractService<T extends AbstractModel<Long>, Long extend
                 PageRequest.of(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "id");
 
         return getRepository().findAll(pageRequest);
+    }
+    public List<T> getListAll() {
+        return getRepository().findAll();
     }
 
     public T save(T entity) {

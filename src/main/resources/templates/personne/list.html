@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>Clients</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>Clients</h1>
+<ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active">Liste des Acteurs/Réalisateurs</li>
+</ol>
+</section>
+<div layout:fragment="content">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Liste des Acteurs/Réalisateurs</h3>
+            <div class="box-tools pull-right">
+                <a href="/personne/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
+                <br clear="all" />
+            </div>
+        </div>
+        <div class="box-body no-padding">
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Nom & prenom</th>
+                    <th>Type</th>
+                    <th>Nationalite</th>
+                    <th>Date de naissance</th>
+                    <th>Registration Date</th>
+                    <th>Action</th>
+                    
+                </tr>
+                <tr th:each="aPerson : ${listPersonnes}">
+                    <td th:inline="text">
+                    [[${aPerson.id}]]
+                    <a th:href="${'/personne/details/' + aPerson.id}">
+                    	<i class="fa fa-info-circle"></i>
+                    </a>           	  	
+                    </td>
+                    <td th:text="${aPerson.nom + ' ' + aPerson.prenom}"></td>
+                    <td th:text="${aPerson.typePersonne}"></td>
+                    <td th:text="${aPerson.nationalite}"></td>
+                    <td th:text="${#dates.format(aPerson.dateNaissance, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(aPerson.addedDate, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <a th:href="${'/personne/edit/' + aPerson.id}"><i class="fa fa-edit"></i></a> |
+                        <a th:href="${'/personne/delete/' + aPerson.id}"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <li class="ml-2 mr-2"><a href="/personne/1"><i class="fa fa-fast-backward"></i></a></li>
+                <li class="ml-2 mr-2" th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}" th:class="${p == currentIndex} ? 'active' : ''">
+                    <a th:href="${'/personne/' + p}" th:text="${p + ' '}"></a>
+                </li>
+                <li class="ml-2 mr-2"><a th:href="${'/personne/' + endIndex}"><i class="fa fa-fast-forward"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

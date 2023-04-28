@@ -63,9 +63,8 @@ public class NationaliteController {
 
 	    @PostMapping(value = "/save")
 	    public String save(Nationalite nationalite, final RedirectAttributes ra) {
-
 	        Nationalite save = nationaliteService.save(nationalite);
-	        ra.addFlashAttribute("successFlash", "Cliente foi salvo com sucesso.");
+	        ra.addFlashAttribute("successFlash", "Nationnalite saved successfully");
 	        return "redirect:/nationalite";
 
 	    }

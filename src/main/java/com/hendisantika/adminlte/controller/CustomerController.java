@@ -2,6 +2,10 @@ package com.hendisantika.adminlte.controller;
 
 import com.hendisantika.adminlte.model.Customers;
 import com.hendisantika.adminlte.service.CustomersService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -27,7 +32,12 @@ public class CustomerController {
     public String index() {
         return "redirect:/customers/1";
     }
-
+    @GetMapping(path="/api/list",produces="application/json")
+    public @ResponseBody List<Customers>getAllPersons(){
+    	List<Customers> allCustumers=new ArrayList<Customers>();
+    	allCustumers=customerService.getListAll();
+    	return allCustumers;
+    }
     @GetMapping(value = "/{pageNumber}")
     public String list(@PathVariable Integer pageNumber, Model model) {
         Page<Customers> page = customerService.getList(pageNumber);
