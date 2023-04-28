@@ -1,0 +1,132 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Add Movies</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		
+		<section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Add a Movie</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Add a Movie</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    
+     <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+        <div class="row">
+              <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Add - Edit form</h3>
+                        </div>
+				<form data-toggle="validator" role="form" th:object="${film}"
+					th:action="@{/film/save}" method="post"
+					enctype="multipart/form-data">
+					<div class="card-body">
+						<input type="hidden" th:field="*{id}" />
+
+						<div class="form-group">
+							<label for="Title">Title</label> <input type="text"
+								required="true" class="form-control" th:field="*{titre}"
+								id="Title" />
+						</div>
+						<div class="form-group">
+							<label for="Duration">Duration(Minutes)</label> <input
+								type="number" required="true" class="form-control"
+								th:field="*{duree}" id="Duration" />
+						</div>
+						<div class="form-group">
+							<label for="Year">Year</label> <input type="number"
+								required="true" class="form-control" th:field="*{annee}"
+								id="Year" />
+						</div>
+						<div class="form-group">
+							<label for="director">Director</label> <select
+								th:field="*{realisateur}">
+								<option th:each="realis : ${listRealisateurs}"
+									th:value="${realis.id}"
+									th:text="${realis.nom + ' ' + realis.prenom}"
+									th:selected="(${realisateur} != null)?${realis.id} == ${realis.id} : false">
+								</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="nationalite">Genres</label> <select
+								th:field="*{genre}">
+								<option th:each="gen : ${listeGenres}" th:value="${gen.id}"
+									th:text="${gen.libelle}"
+									th:selected="(${genre} != null)?${gen.id} == ${genre.id} : false">
+								</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="nationalite">Nationality</label> <select
+								th:field="*{nationalite}">
+								<option th:each="nat : ${listeNationalites}"
+									th:value="${nat.id}" th:text="${nat.libelle}"
+									th:selected="(${nationalite} != null)?${nat.id} == ${nationalite.id} : false">
+								</option>
+							</select>
+						</div>
+						<!-- 					<div class="form-group">
+						<label for="actor">Actors</label> <select name="acteur"
+							th:field="*{acteurs}">
+							<option th:each="act : ${listActeurs}" th:value="${act.id}"
+								th:text="${act.prenom +' '+act.nom}"></option>
+						</select>
+					</div> -->
+
+
+
+						<div class="col-12 col-sm-6">
+
+							<label>Actors</label>
+							<div class="select2-purple" data-select2-id="29">
+								<select class="select2 select2-hidden-accessible" multiple
+									id="actor" name="acteur" data-placeholder="Select a State"
+									data-dropdown-css-class="select2-purple" style="width: 100%;"
+									data-select2-id="15" tabindex="-1" aria-hidden="true">
+									<option th:each="act : ${listActeurs}" th:value="${act.id}"
+										th:text="${act.prenom +' '+act.nom}"></option>
+								</select><span class="dropdown-wrapper" aria-hidden="true"></span>
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label for="photo">Picture</label> <input type="file"
+								class="form-control" name="file" id="photo" />
+							<div th:if="${film.cover == null}">Aucune photo...</div>
+							<img th:if="${film.cover != null}"
+								class="profile-user-img img-responsive img-circle"
+								th:src="@{*{cover}}" alt="Actor/Director profile picture">
+						</div>
+					</div>
+					 <div class="card-footer">
+                                <button class="btn btn-primary" type="submit">Save</button>
+                            </div>
+				</form>
+			</div>
+			</div>
+			</div>
+			</div>
+			</section>
+		</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Aflami - Ø§Ù�Ù„Ø§Ù…ÙŠ | Personne</title>
+</head>
+<body>
+
+
+	<div layout:fragment="content">
+
+		<section layout:fragment="header" class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="">
+						<h1>Film</h1>
+					</div>
+					<div class="col-sm-6">
+						<ul class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item active">Film details</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="card card-primary card-outline">
+							<div class="card-body box-profile">
+								<div class="text-center">
+									<img class="profile-user-img img-fluid img-circle"
+										th:src="@{${film.cover}}" alt="User profile picture">
+								</div>
+								<h3 class="profile-username text-center"
+									th:text="${ film.titre}"></h3>
+								<p class="text-muted text-center"
+									th:text="${film.genre}"></p>
+								<ul class="list-group list-group-unbordered mb-3">
+									<li class="list-group-item"><b>Anne:</b><a
+										class="float-right" th:text="${' '+ film.annee}"></a></li>
+									<li class="list-group-item"><b>Nationalite:</b><a
+										class="float-right"
+										th:text="${' '+ film.nationalite.libelle}"></a></li>
+
+								</ul>
+								<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+							</div>
+						</div>
+
+
+					</div>
+					
+				</div>
+			</div>
+
+		</section>
+	</div>
+</body>
+</html>

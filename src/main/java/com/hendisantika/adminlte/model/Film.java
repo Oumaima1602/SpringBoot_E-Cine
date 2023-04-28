@@ -33,6 +33,9 @@ public class Film extends AbstractModel<Long>{
 	
 	@Column(nullable = false)
     private int duree;
+	
+	  @Column(nullable = true)
+	  private String cover;
 
 	@Column(nullable = false)
     private int annee;
