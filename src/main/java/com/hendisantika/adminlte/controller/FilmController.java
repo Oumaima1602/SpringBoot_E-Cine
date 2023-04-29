@@ -25,6 +25,7 @@ import com.hendisantika.adminlte.service.FilmService;
 import com.hendisantika.adminlte.service.GenreService;
 import com.hendisantika.adminlte.service.NationaliteService;
 import com.hendisantika.adminlte.service.PersonneService;
+import com.hendisantika.adminlte.util.AddActors;
 import com.hendisantika.adminlte.util.FileUploadUtil;
 
 @Controller
@@ -68,13 +69,13 @@ public class FilmController {
 
     @GetMapping("/add")
     public String add(Model model) {
-    	List<Personne> listActeurs = new ArrayList<Personne>();
-    	List<Personne> listRealisateurs = new ArrayList<Personne>();
-    	listActeurs = personneService.getActeurs();
-    	listRealisateurs =personneService.getDirector();
+    	List<Personne> listeActeurs = new ArrayList<Personne>();
+    	List<Personne> listeRealisateurs = new ArrayList<Personne>();
+    	listeActeurs = personneService.getActeurs();
+    	listeRealisateurs =personneService.getDirector();
     	
-        model.addAttribute("listActeurs", listActeurs);
-        model.addAttribute("listRealisateurs", listRealisateurs);
+        model.addAttribute("listActeurs", listeActeurs);
+        model.addAttribute("listRealisateurs", listeRealisateurs);
         model.addAttribute("film", new Film());
         model.addAttribute("listeNationalites", natService.getListAll());
         model.addAttribute("listeGenres", genreService.getListAll());
@@ -84,17 +85,21 @@ public class FilmController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
+    	List<Personne> listeActeurs = new ArrayList<Personne>();
+    	List<Personne> listeRealisateurs = new ArrayList<Personne>();
+    	listeActeurs = personneService.getActeurs();
+    	listeRealisateurs =personneService.getDirector();
     	model.addAttribute("listeNationalites",natService.getListAll());
     	model.addAttribute("listeGenres",genreService.getListAll());
-    	model.addAttribute("listeFilms",filmService.getListAll());
-    	model.addAttribute("listePersonnes",personneService.getListAll());
+    	model.addAttribute("listeRealisateurs",listeRealisateurs);
+    	model.addAttribute("listeActeurs",personneService.getListAll());
         model.addAttribute("film", filmService.get(id));
         return "film/form";
 
     }
 
     @PostMapping(value = "/save")
-    public String save(@RequestParam("file") MultipartFile file,Film film, final RedirectAttributes ra) {
+    public String save(@RequestParam("file") MultipartFile file,Film film, @RequestParam("acteur") String acteur, final RedirectAttributes ra) {
     	if(!file.isEmpty()) {
     		String fileName=StringUtils.cleanPath(file.getOriginalFilename());
     		try {
@@ -102,11 +107,14 @@ public class FilmController {
 				String uploadDir=UPLOAD_DIR;
 				FileUploadUtil.saveFile(uploadDir,uuid+fileName,file);
 				film.setCover("/photos/covers/"+uuid+fileName);
+				List<Personne> acteurs = AddActors.stringToPersonne(acteur, personneService);
+            	film.setActeurs(acteurs);
+            	filmService.save(film);
 			} catch (IOException e) {
 				System.out.println("####\nUpload Error:\n"+e);
+				e.printStackTrace();
 			}
     	}
-        Film save = filmService.save(film);
         ra.addFlashAttribute("successFlash", "film saved successfuly !");
         return "redirect:/film";
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import com.hendisantika.adminlte.model.Personne;
+import com.hendisantika.adminlte.model.Personne.TypePersonne;
 import com.hendisantika.adminlte.repository.PersonneRepository;
 
 @Service
@@ -18,11 +19,11 @@ public class PersonneService extends AbstractService<Personne, Long>{
         return personneRepository;
     }
     public List<Personne> getActeurs(){
-  	  return personneRepository.findByTypePersonne(com.hendisantika.adminlte.model.Personne.TypePersonne.ACTEUR);
+  	  return personneRepository.findByTypePersonne(TypePersonne.ACTEUR);
     }
     
     
     public List<Personne> getDirector(){
-  	  return personneRepository.findByTypePersonneIs(TypePersonne.REALISATEUR);
+  	  return personneRepository.findByTypePersonne(TypePersonne.REALISATEUR);
     }
 }
