@@ -32,13 +32,11 @@
 						<th>Director</th>
 						<th>Duration</th>
 						<th>Year</th>
-						<th>Action</th>
+						<th>Actions</th>
+						
 					</tr>
 					<tr th:each="afilm : ${listFilms}">
-						<td th:inline="text">[[${afilm.id}]] <a
-							th:href="${'/film/details/' + afilm.id}"> <i
-								class="fa fa-info-circle"></i>
-						</a>
+						<td th:inline="text">[[${afilm.id}]]
 						</td>
 						<td th:text="${afilm.titre}"></td>
 						<td th:text="${afilm.genre.libelle}"></td>
@@ -50,7 +48,10 @@
 						<td><a th:href="${'/film/edit/' + afilm.id}"><i
 								class="fa fa-edit"></i></a> <a
 							th:href="${'/film/delete/' + afilm.id}"><i
-								class="fa fa-trash"></i></a></td>
+								class="fa fa-trash"></i></a>
+								<a
+							th:href="${'/film/details/' + afilm.id}"><i
+								class="fa fa-regular fa-eye"></i></a></td>
 					</tr>
 				</table>
 			</div>

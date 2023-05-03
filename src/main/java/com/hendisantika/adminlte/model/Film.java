@@ -62,6 +62,9 @@ public class Film extends AbstractModel<Long>{
     @OneToMany(mappedBy = "film")
 	  private List<Seance> seances;
     
+    @OneToMany(mappedBy = "film")
+	  private List<Media> media;
+    
     @Column(name = "added_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date addedDate;
     

@@ -106,7 +106,7 @@ public class FilmController {
 				String uuid=UUID.randomUUID().toString();
 				String uploadDir=UPLOAD_DIR;
 				FileUploadUtil.saveFile(uploadDir,uuid+fileName,file);
-				film.setCover("/photos/covers/"+uuid+fileName);
+				film.setCover("/photos/films/"+uuid+fileName);
 				List<Personne> acteurs = AddActors.stringToPersonne(acteur, personneService);
             	film.setActeurs(acteurs);
             	filmService.save(film);
