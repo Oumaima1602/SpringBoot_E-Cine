@@ -23,7 +23,7 @@ import lombok.Setter;
 public class Media extends AbstractModel<Long>{
 	private static final long serialVersionUID = 3132573891761750069L;
 	
-	public enum TypeMedia {IMAGE, VIDEO, DOCUMENT} 
+	public enum TypeMedia {IMAGE, VIDEO, DOCUMENT,LINK} 
 	
 	@Column(nullable = false, length = 100)
     private String media;

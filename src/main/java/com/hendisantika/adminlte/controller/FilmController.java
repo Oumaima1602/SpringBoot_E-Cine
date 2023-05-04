@@ -23,6 +23,7 @@ import com.hendisantika.adminlte.model.Film;
 import com.hendisantika.adminlte.model.Personne;
 import com.hendisantika.adminlte.service.FilmService;
 import com.hendisantika.adminlte.service.GenreService;
+import com.hendisantika.adminlte.service.MediaService;
 import com.hendisantika.adminlte.service.NationaliteService;
 import com.hendisantika.adminlte.service.PersonneService;
 import com.hendisantika.adminlte.util.AddActors;
@@ -40,6 +41,9 @@ public class FilmController {
     private GenreService genreService;
 	@Autowired
     private FilmService filmService;
+	
+	@Autowired
+    private MediaService mediaService;
     
 
 	private final String UPLOAD_DIR = "/src/main/resources/static/photos/films/";
@@ -129,6 +133,7 @@ public class FilmController {
     }
     @GetMapping("/details/{id}")
     public String showDetails(@PathVariable Long id, Model model) {
+    	model.addAttribute("listeMedias",mediaService.getListAll());
         model.addAttribute("film", filmService.get(id));
         return "film/details";
 
