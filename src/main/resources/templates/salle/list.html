@@ -8,10 +8,10 @@
 </head>
 <body>
 <section layout:fragment="header">
-		<h1>Salles</h1>
+		<h1>Halls</h1>
 		<ol class="breadcrumb">
 			<li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-			<li class="active">Salles</li>
+			<li class="active">Halls</li>
 		</ol>
 	</section>
 	<div layout:fragment="content">
@@ -26,10 +26,10 @@
 			<div class="box-body no-padding">
 				<table class="table table-striped">
 					<tr>
-						<th>id</th>
-						<th>addedDate</th>
-						<th>capacite</th>
-						<th>numero</th>
+						<th>Id</th>
+						<th>AddedDate</th>
+						<th>Capacity</th>
+						<th>Number</th>
 						<th>Action</th>
 					</tr>
 					<tr th:each="row : ${list}">

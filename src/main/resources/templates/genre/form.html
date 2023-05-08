@@ -3,14 +3,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout">
 <head>
-<title>Registration Genre</title>
+<title>Registration Gendre</title>
 </head>
 <body>
 	<section layout:fragment="header">
-		<h1>Types registration</h1>
+		<h1/>Registration Gendre</h1>
 		<ol class="breadcrumb">
 			<li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-			<li class="active">Registration Genre</li>
+			<li class="active">Registration Gendre</li>
 		</ol>
 	</section>
 	<div layout:fragment="content">
@@ -28,7 +28,7 @@
 					<input type="hidden" th:field="*{id}" />
 
 					<div class="form-group">
-						<label for="libelle">Libelle</label> <input type="text"
+						<label for="libelle">Gender</label> <input type="text"
 							required="true" class="form-control" th:field="*{libelle}"
 							id="libelle" />
 					</div>

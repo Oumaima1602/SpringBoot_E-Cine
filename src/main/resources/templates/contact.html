@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html
+        layout:decorate="layout"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+	<style>
+	.column {
+		float: left;
+		width: 50%;
+		margin:100px;
+	}
+	
+	/* Clear floats after the columns */
+	.row:after {
+	 
+		content: "";
+		display: table;
+		clear: both;
+	}
+	</style>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <section >
+			<div class="row">
+				<div class="column">
+					<h2>contact us :</h2>
+					<p>need to get in touch with us? elther fill out the form with
+						your inquiry or find the department email you'd like to contact
+						below</p>
+				</div>
+				<div class="column"></div>
+			</div>
+			</section>
+</div>
+
+</body>
+</html>

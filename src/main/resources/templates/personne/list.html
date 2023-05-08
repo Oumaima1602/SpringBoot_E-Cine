@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
-    <title>Clients</title>
+    <title>Actors/Directors</title>
 </head>
 <body>
 <section layout:fragment="header">
-    <h1>Clients</h1>
+    <h1>List Actors/Directors</h1>
 <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li class="active">Liste des Acteurs/Réalisateurs</li>
+    <li class="active">List Actors/Directors</li>
 </ol>
 </section>
 <div layout:fragment="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Liste des Acteurs/Réalisateurs</h3>
+            <h3 class="box-title">List Actors/Directors</h3>
             <div class="box-tools pull-right">
                 <a href="/personne/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
                 <br clear="all" />
@@ -25,10 +25,10 @@
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Nom & prenom</th>
-                    <th>Type</th>
-                    <th>Nationalite</th>
-                    <th>Date de naissance</th>
+                    <th>Full Name</th>
+                    <th>Gender</th>
+                    <th>Nationality</th>
+                    <th>Birthdate</th>
                     <th>Registration Date</th>
                     <th>Action</th>
                     

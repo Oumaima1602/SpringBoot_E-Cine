@@ -3,14 +3,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout">
 <head>
-<title>nationalite</title>
+<title>Nationality</title>
 </head>
 <body>
 	<section layout:fragment="header">
-		<h1>nationalite</h1>
+		<h1>Nationality</h1>
 		<ol class="breadcrumb">
 			<li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-			<li class="active">nationalite</li>
+			<li class="active">Nationality</li>
 		</ol>
 	</section>
 	<div layout:fragment="content">
@@ -26,7 +26,7 @@
 				<table class="table table-striped">
 					<tr>
 						<th>ID</th>
-						<th>Libelle</th>
+						<th>Nationality</th>
 						<th>Action</th>
 					</tr>
 					<tr th:each="row : ${list}">
